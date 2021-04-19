@@ -103,12 +103,12 @@ if ! [ -z "$INPUT_COPY_STACK_FILE" ] && [ $INPUT_COPY_STACK_FILE = 'true' ]; the
 
   if ! [ -z "$INPUT_PULL_IMAGES_FIRST" ] && [ $INPUT_PULL_IMAGES_FIRST = 'true' ] && [ $INPUT_DEPLOYMENT_MODE = 'docker-compose' ]; then
     echo "Pull docker images before deploying"
-    execute_ssh "docker-compose pull"
+    execute_ssh "${DEPLOYMENT_COMMAND} pull"
   fi
 
   if ! [ -z "$INPUT_PRE_DEPLOYMENT_COMMAND_ARGS" ] && [ $INPUT_DEPLOYMENT_MODE = 'docker-compose' ]; then
     echo "Executing pre-deployment arguments"
-    execute_ssh "docker-compose $INPUT_PRE_DEPLOYMENT_COMMAND_ARGS" 2>&1
+    execute_ssh "${DEPLOYMENT_COMMAND} $INPUT_PRE_DEPLOYMENT_COMMAND_ARGS" 2>&1
   fi
 
   execute_ssh ${DEPLOYMENT_COMMAND} "$INPUT_ARGS" 2>&1
