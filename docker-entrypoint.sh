@@ -63,6 +63,7 @@ docker-swarm)
   ;;
 
 *)
+  INPUT_DEPLOYMENT_MODE="docker-compose"
   DEPLOYMENT_COMMAND="docker-compose $DEPLOYMENT_COMMAND_OPTIONS -f $STACK_FILE"
   ;;
 esac
